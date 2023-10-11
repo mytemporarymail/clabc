@@ -1,13 +1,13 @@
 {
-  "name": "clewd",
+  "name": "clabc",
   "version": "4.6",
   "description": ":^)",
-  "main": "clewd.js",
+  "main": "clabc.js",
   "engines": {
     "node": ">=20.4.0"
   },
   "scripts": {
-    "run": "node clewd.js"
+    "run": "node clabc.js"
   },
   "keywords": [
     "doom",
@@ -27,13 +27,13 @@
       "url": "https://github.com/h-a-s-k"
     }
   ],
-  "homepage": "https://rentry.org/teralomaniac_clewd",
+  "homepage": "https://rentry.org/teralomaniac_clabc",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/teralomaniac/clewd.git"
+    "url": "git+https://github.com/teralomaniac/clabc.git"
   },
   "bugs": {
-    "url": "https://gitgud.io/ahsk/clewd/-/issues"
+    "url": "https://gitgud.io/ahsk/clabc/-/issues"
   },
   "dependencies": {"localtunnel": "^2.0.2"}
 }

@@ -1,12 +1,12 @@
 <div align="center">
 <h1>Changelog</h1>
-<a href="https://gitgud.io/ahsk/clewd/">
+<a href="https://gitgud.io/ahsk/clabc/">
   <img
     height="120"
     width="120"
-    alt="Clewd"
-    title="Clewd"
-    src="https://gitgud.io/ahsk/clewd/-/raw/master/media/logo.png"
+    alt="clabc"
+    title="clabc"
+    src="https://gitgud.io/ahsk/clabc/-/raw/master/media/logo.png"
     align="center"
   />
 </a>
@@ -115,15 +115,15 @@ tested on linux and windows
 
 split code into multiple files
 
-clewd-superfetch and clewd are now the same package
+clabc-superfetch and clabc are now the same package
 
 removed all dependencies
 
-**git** [added to requirements](https://gitgud.io/ahsk/clewd/#requirements) (highly recommended so update scripts work, otherwise do a clean install)
+**git** [added to requirements](https://gitgud.io/ahsk/clabc/#requirements) (highly recommended so update scripts work, otherwise do a clean install)
 
 # 3.8.5
 
-fixed memory leak on clewd-superfetch
+fixed memory leak on clabc-superfetch
 
 added support for custom host/port for superfetch in case you want
 
@@ -157,7 +157,7 @@ new binaries for windows/linux/mac/arm/freebsd
 
 if set to true, will use an alternate method to get past the *"We are unable to serve your request"* error
 
-if set to false it's the old clewd behavior (if you don't struggle with that error you can keep it on false)
+if set to false it's the old clabc behavior (if you don't struggle with that error you can keep it on false)
 
 > **Streaming changes**
 
@@ -234,14 +234,14 @@ if set to true, prevents the deletion of chats at any point
 # 3.1
 > **Streaming changes**
 
-if the user did not enable streaming, clewd will **fake** a non-stream response for compatibility
+if the user did not enable streaming, clabc will **fake** a non-stream response for compatibility
 
 > **LogMessages** added (defaults false)
 
 if set to true, will log the prompt and then the reply to a `log.txt` file
 
 # 3.0
-> ### **Clewd requires setting your "Chat Completion source" to OpenAI now. Enable the "External" models option aswell.**
+> ### **clabc requires setting your "Chat Completion source" to OpenAI now. Enable the "External" models option aswell.**
 
 > ### A config.js file will be generated when first ran, edit it to set your cookie and customize settings
 
@@ -249,7 +249,7 @@ if set to true, will log the prompt and then the reply to a `log.txt` file
 
 streaming is now enforced by the website so no point supporting the other mode
 
-Clewd streaming was reworked to behave more like [NBSX](https://gitgud.io/ahsk/nbsx)
+clabc streaming was reworked to behave more like [NBSX](https://gitgud.io/ahsk/nbsx)
 
 > **AntiStall**, **StallTrigger**, **StallTriggerMax** removed
 
@@ -277,7 +277,7 @@ they remove the Human/Assistant prefixes from the last messages, keeping the mes
 
 > **RenewAlways** added (defaults true)
 
-if set to true, this is the default pre-3.0 clewd behavior
+if set to true, this is the default pre-3.0 clabc behavior
 
 if set to false, check the `Prompts` section below
 
@@ -340,7 +340,7 @@ example of custom `Main` prompt with XML tags wrapping around
 
 > **Minor changes**
 
-- Clewd errors now should show as such on your frontend
+- clabc errors now should show as such on your frontend
 
 - flags now show how many days until they expire
 
@@ -373,7 +373,7 @@ another check added, *should* impersonate less often
 # 2.5
 > Changed some defaults around
 
-refer to the [README](https://gitgud.io/ahsk/clewd/#defaults) for the reasoning behind each
+refer to the [README](https://gitgud.io/ahsk/clabc/#defaults) for the reasoning behind each
 
 > **DeleteChats** bugfix
 
@@ -418,4 +418,4 @@ now whatever temperature <=1 you set on SillyTavern will be forwarded to claude 
 
 ---
 
-> [README](https://gitgud.io/ahsk/clewd/#defaults)
+> [README](https://gitgud.io/ahsk/clabc/#defaults)

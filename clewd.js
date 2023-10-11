@@ -1,10 +1,10 @@
 /*
-* https://rentry.org/teralomaniac_clewd
-* https://github.com/teralomaniac/clewd
+* https://rentry.org/teralomaniac_clabc
+* https://github.com/teralomaniac/clabc
 */
 'use strict';
 
-const {createServer: Server, IncomingMessage, ServerResponse} = require('node:http'), {createHash: Hash, randomUUID, randomInt, randomBytes} = require('node:crypto'), {TransformStream, ReadableStream} = require('node:stream/web'), {Readable, Writable} = require('node:stream'), {Blob} = require('node:buffer'), {existsSync: exists, writeFileSync: write, createWriteStream} = require('node:fs'), {join: joinP} = require('node:path'), {ClewdSuperfetch: Superfetch, SuperfetchAvailable} = require('./lib/clewd-superfetch'), {AI, fileName, genericFixes, bytesToSize, setTitle, checkResErr, Replacements, Main} = require('./lib/clewd-utils'), ClewdStream = require('./lib/clewd-stream');
+const {createServer: Server, IncomingMessage, ServerResponse} = require('node:http'), {createHash: Hash, randomUUID, randomInt, randomBytes} = require('node:crypto'), {TransformStream, ReadableStream} = require('node:stream/web'), {Readable, Writable} = require('node:stream'), {Blob} = require('node:buffer'), {existsSync: exists, writeFileSync: write, createWriteStream} = require('node:fs'), {join: joinP} = require('node:path'), {clabcSuperfetch: Superfetch, SuperfetchAvailable} = require('./lib/clabc-superfetch'), {AI, fileName, genericFixes, bytesToSize, setTitle, checkResErr, Replacements, Main} = require('./lib/clabc-utils'), clabcStream = require('./lib/clabc-stream');
 
 /******************************************************* */
 let currentIndex, Firstlogin = true, changeflag = 0, changetime = 0, totaltime, uuidOrgArray = [];
@@ -383,7 +383,7 @@ const updateParams = res => {
     updateParams(convRes);
     conversations.length > 0 && await Promise.all(conversations.map((conv => deleteChat(conv.uuid))));
 }, writeSettings = async (config, firstRun = false) => {
-    write(ConfigPath, `/*\n* https://rentry.org/teralomaniac_clewd\n* https://github.com/teralomaniac/clewd\n*/\n\n// SET YOUR COOKIE BELOW\n\nmodule.exports = ${JSON.stringify(config, null, 4)}\n\n/*\n BufferSize\n * How many characters will be buffered before the AI types once\n * lower = less chance of \`PreventImperson\` working properly\n\n ---\n\n SystemInterval\n * How many messages until \`SystemExperiments alternates\`\n\n ---\n\n Other settings\n * https://gitgud.io/ahsk/clewd/#defaults\n * and\n * https://gitgud.io/ahsk/clewd/-/blob/master/CHANGELOG.md\n */`.trim().replace(/((?<!\r)\n|\r(?!\n))/g, '\r\n'));
+    write(ConfigPath, `/*\n* https://rentry.org/teralomaniac_clabc\n* https://github.com/teralomaniac/clabc\n*/\n\n// SET YOUR COOKIE BELOW\n\nmodule.exports = ${JSON.stringify(config, null, 4)}\n\n/*\n BufferSize\n * How many characters will be buffered before the AI types once\n * lower = less chance of \`PreventImperson\` working properly\n\n ---\n\n SystemInterval\n * How many messages until \`SystemExperiments alternates\`\n\n ---\n\n Other settings\n * https://gitgud.io/ahsk/clabc/#defaults\n * and\n * https://gitgud.io/ahsk/clabc/-/blob/master/CHANGELOG.md\n */`.trim().replace(/((?<!\r)\n|\r(?!\n))/g, '\r\n'));
     if (firstRun) {
         console.warn('[33mconfig file created!\nedit[0m [1mconfig.js[0m [33mto set your settings and restart the program[0m');
         process.exit(0);
@@ -420,7 +420,7 @@ const updateParams = res => {
                 buffer.push(chunk);
             }));
             req.on('end', (async () => {
-                let clewdStream, titleTimer, samePrompt = false, shouldRenew = true, retryRegen = false;
+                let clabcStream, titleTimer, samePrompt = false, shouldRenew = true, retryRegen = false;
                 try {
                     const body = JSON.parse(Buffer.concat(buffer).toString()), temperature = Math.max(.1, Math.min(1, body.temperature));
                     let {messages} = body;
@@ -699,7 +699,7 @@ const updateParams = res => {
                         return res;
                     })(signal, model, prompt, temperature, type));
                     const response = Writable.toWeb(res);
-                    clewdStream = new ClewdStream({
+                    clabcStream = new clabcStream({
                         config: Config,
                         version: Main,
                         minSize: Config.BufferSize,
@@ -708,16 +708,16 @@ const updateParams = res => {
                         abortControl,
                         source: fetchAPI
                     }, Logger);
-                    titleTimer = setInterval((() => setTitle('recv ' + bytesToSize(clewdStream.size))), 300);
-                    Config.Settings.Superfetch ? await Readable.toWeb(fetchAPI.body).pipeThrough(clewdStream).pipeTo(response) : await fetchAPI.body.pipeThrough(clewdStream).pipeTo(response);
+                    titleTimer = setInterval((() => setTitle('recv ' + bytesToSize(clabcStream.size))), 300);
+                    Config.Settings.Superfetch ? await Readable.toWeb(fetchAPI.body).pipeThrough(clabcStream).pipeTo(response) : await fetchAPI.body.pipeThrough(clabcStream).pipeTo(response);
                 } catch (err) {
                     if ('AbortError' === err.name) {
                         res.end();
                     } else {
-                        err.planned || console.error('[33mClewd:[0m\n%o', err);
+                        err.planned || console.error('[33mclabc:[0m\n%o', err);
                         res.json({
                             error: {
-                                message: 'clewd: ' + (err.message || err.name || err.type),
+                                message: 'clabc: ' + (err.message || err.name || err.type),
                                 type: err.type || err.name || err.code,
                                 param: null,
                                 code: err.code || 500
@@ -726,10 +726,10 @@ const updateParams = res => {
                     }
                 }
                 clearInterval(titleTimer);              
-                if (clewdStream) {
-                    clewdStream.censored && console.warn('[33mlikely your account is hard-censored[0m');
-                    prevImpersonated = clewdStream.impersonated;
-                    setTitle('ok ' + bytesToSize(clewdStream.size));
+                if (clabcStream) {
+                    clabcStream.censored && console.warn('[33mlikely your account is hard-censored[0m');
+                    prevImpersonated = clabcStream.impersonated;
+                    setTitle('ok ' + bytesToSize(clabcStream.size));
                     //console.log(`${200 == fetchAPI.status ? '[32m' : '[33m'}${fetchAPI.status}![0m\n`);
 /******************************** */                    
                     429 == fetchAPI.status ? console.log(`[35mExceeded limit![0m\n`) : console.log(`${200 == fetchAPI.status ? '[32m' : '[33m'}${fetchAPI.status}![0m\n`);
@@ -739,7 +739,7 @@ const updateParams = res => {
                         changer = true;
                     }
 /******************************** */
-                    clewdStream.empty();
+                    clabcStream.empty();
                 }
                 if (prevImpersonated) {
                     try {
@@ -756,7 +756,7 @@ const updateParams = res => {
       case '/v1/complete':
         res.json({
             error: {
-                message: 'clewd: Set "Chat Completion" to OpenAI instead of Claude. Enable "External" models aswell'
+                message: 'clabc: Set "Chat Completion" to OpenAI instead of Claude. Enable "External" models aswell'
             }
         });
         break;

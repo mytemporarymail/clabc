@@ -24,4 +24,4 @@ USER node
 RUN ls -la
 
 # Start the application
-CMD ["node", "clewd.js"]
+CMD ["node", "clabc.js"]

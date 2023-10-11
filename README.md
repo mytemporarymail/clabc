@@ -1,28 +1,28 @@
 <div align="center">
-<a href="https://github.com/teralomaniac/clewd">
-<h1>Clewd</h1>
+<a href="https://github.com/teralomaniac/clabc">
+<h1>clabc</h1>
   <img
     height="120"
     width="120"
-    alt="Clewd"
-    title="Clewd"
-    src="https://gitgud.io/ahsk/clewd/-/raw/master/media/logo.png"
+    alt="clabc"
+    title="clabc"
+    src="https://gitgud.io/ahsk/clabc/-/raw/master/media/logo.png"
     align="left"
   />
 
 </a>
 
-[原版Clewd](https://gitgud.io/ahsk/clewd)
+[原版clabc](https://gitgud.io/ahsk/clabc)
 
-[Clewd教程（必读）](https://rentry.org/teralomaniac_clewd) 
+[clabc教程（必读）](https://rentry.org/teralomaniac_clabc) 
 
-Clewd修改版及教程禁止转发任何包含收费项目的群组/论坛或用于收费项目
+clabc修改版及教程禁止转发任何包含收费项目的群组/论坛或用于收费项目
 <br>
 <hr>
 <a>
-   <img src="https://gitgud.io/ahsk/clewd/-/raw/master/media/program.png">
+   <img src="https://gitgud.io/ahsk/clabc/-/raw/master/media/program.png">
 </a>
-<h2><a href="https://gitgud.io/ahsk/clewd/-/blob/master/CHANGELOG.md">CHANGELOG</a></h2>
+<h2><a href="https://gitgud.io/ahsk/clabc/-/blob/master/CHANGELOG.md">CHANGELOG</a></h2>
 </div>
 
 ## Requirements
@@ -97,7 +97,7 @@ Clewd修改版及教程禁止转发任何包含收费项目的群组/论坛或�
     * true will send the temperature you set on your frontend
     * only values under <=1.0 >= 0.1
     * this could get your account banned
-    * if clewd stops working, set to false
+    * if clabc stops working, set to false
 
  - `PreserveChats`: (false)/true
     * true prevents the deletion of old chats at any point
